@@ -21,7 +21,7 @@
 <meta name="twitter:image" content="https://alejandrorosas.co/m/og.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400&family=Manrope:wght@300;400;500&family=Michroma&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400&family=Manrope:wght@300;400;500&family=Michroma&family=Newsreader:ital,opsz,wght@0,6..72,300;1,6..72,300&display=swap">
 <style>
 /* Black is the only surface. His real life is the only color: real footage, his own photos, his own captions. */
 :root {
@@ -32,6 +32,8 @@
   --display: "Michroma", "Eurostile", "Arial", sans-serif;
   --body: "Manrope", system-ui, -apple-system, "Segoe UI", sans-serif;
   --mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+  --serif: "Newsreader", Georgia, "Times New Roman", serif;
+  --h: rgba(255, 255, 255, .14);
   --gl: max(clamp(16px, 4vw, 56px), env(safe-area-inset-left, 0px));
   --gr: max(clamp(16px, 4vw, 56px), env(safe-area-inset-right, 0px));
   --beat: 0;
@@ -104,7 +106,7 @@ h1 .l:first-child { flex: 9 1 0; } h1 .l:last-child { flex: 5 1 0; }
 .say.lit span.on { opacity: 1; }
 .own { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(28px, 4vw, 64px); margin-top: clamp(64px, 9vw, 124px); text-align: left; }
 .own blockquote { margin: 0; }
-.own p { margin: 0; font-size: clamp(1.02rem, 1.4vw, 1.2rem); line-height: 1.55; color: var(--w); }
+.own p { margin: 0; font-family: var(--serif); font-size: clamp(1.2rem, 1.75vw, 1.5rem); line-height: 1.38; color: var(--w); }
 .own footer, .pull footer { margin-top: 14px; font-family: var(--mono); font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--w3); }
 @media (max-width: 860px) { .own { grid-template-columns: minmax(0, 1fr); } }
 
@@ -163,14 +165,39 @@ h1 .l:first-child { flex: 9 1 0; } h1 .l:last-child { flex: 5 1 0; }
   .press .o { text-align: left; padding-top: 0; }
 }
 .pull { max-width: 30em; margin: clamp(44px, 7vw, 84px) auto 0; }
-.pull p { margin: 0; font-family: var(--display); font-size: clamp(1.05rem, 2.2vw, 1.8rem); line-height: 1.32; text-wrap: balance; }
+.pull p { margin: 0; font-family: var(--serif); font-size: clamp(1.5rem, 3.1vw, 2.6rem); line-height: 1.24; text-wrap: balance; }
 .pull p + p { margin-top: .7em; font-family: var(--body); font-size: clamp(1rem, 1.4vw, 1.16rem); color: var(--w2); }
 .rows.axis .row { grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr); }
 .press { margin-top: clamp(40px, 6vw, 72px); text-align: left; }
-.press a, .press div { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 3.2fr); gap: clamp(12px, 3vw, 44px); padding-block: 15px; text-decoration: none; }
+.press a, .press div { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 3.2fr); gap: clamp(12px, 3vw, 44px); padding-block: 15px; text-decoration: none; border-top: 1px solid var(--h); }
+.press a:last-child { border-bottom: 1px solid var(--h); }
 .press .o { font-family: var(--mono); font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--w3); padding-top: 5px; text-align: right; }
 .press .h { font-size: clamp(1rem, 1.7vw, 1.4rem); line-height: 1.32; color: var(--w); text-wrap: balance; }
 .press a:hover .h { text-decoration: underline; text-underline-offset: 5px; text-decoration-thickness: 1px; }
+/* Index: where everything is, at a glance */
+.idx { max-width: 1120px; margin: 0 auto; }
+.where { margin: 0; font-family: var(--mono); font-size: 11px; letter-spacing: .24em; text-transform: uppercase; color: var(--w3); }
+.intro { margin: clamp(16px, 2vw, 24px) 0 0; font-size: clamp(1.35rem, 2.9vw, 2.35rem); line-height: 1.32; font-weight: 300; color: var(--w2); text-wrap: pretty; }
+.intro b { font-weight: 400; color: var(--w); }
+.toc { list-style: none; margin: clamp(44px, 6vw, 76px) 0 0; padding: 0; border-top: 1px solid var(--h); }
+.toc a { display: grid; grid-template-columns: 3.2em minmax(0, .62fr) minmax(0, 1.5fr) 1.6em; gap: 16px; align-items: baseline; padding-block: clamp(15px, 1.9vw, 24px); border-bottom: 1px solid var(--h); text-decoration: none; color: var(--w2); transition: padding .2s ease, color .2s ease; }
+.toc a:hover { color: var(--w); padding-left: 12px; }
+.toc .n { font-family: var(--mono); font-size: 12px; letter-spacing: .14em; color: var(--w3); }
+.toc .t { font-family: var(--display); text-transform: uppercase; font-size: clamp(1rem, 1.8vw, 1.4rem); letter-spacing: .03em; color: var(--w); }
+.toc .d { font-size: clamp(.98rem, 1.3vw, 1.12rem); line-height: 1.4; }
+.toc .a { text-align: right; }
+@media (max-width: 720px) { .toc a { grid-template-columns: 2.4em minmax(0, 1fr) 1.4em; } .toc .d { grid-column: 2 / 4; grid-row: 2; } .toc .a { grid-column: 3; grid-row: 1; } }
+.chap { display: none; }
+@media (max-width: 820px) { .chap { display: block; position: absolute; right: var(--gr); top: calc(env(safe-area-inset-top, 0px) + 19px); font-family: var(--mono); font-size: 10px; letter-spacing: .14em; text-transform: uppercase; color: var(--w2); } }
+
+/* Cosmos */
+.moon { width: clamp(180px, 26vw, 300px); margin: clamp(40px, 6vw, 72px) auto 0; }
+.moon img { width: 100%; border-radius: 50%; }
+.moon .cap { text-align: center; }
+.open { list-style: none; margin: clamp(44px, 6vw, 72px) auto 0; padding: 0; max-width: 760px; border-top: 1px solid var(--h); }
+.open li { padding-block: clamp(14px, 1.9vw, 22px); border-bottom: 1px solid var(--h); font-family: var(--serif); font-size: clamp(1.4rem, 2.8vw, 2.3rem); line-height: 1.2; }
+.after h3 { margin-top: clamp(56px, 8vw, 100px); font-size: clamp(1.5rem, 3.6vw, 3rem); letter-spacing: .02em; }
+
 .out { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px 28px; margin: clamp(26px, 3.5vw, 40px) 0 0; font-family: var(--mono); font-size: 12px; letter-spacing: .16em; text-transform: uppercase; }
 .out a { color: var(--w); text-underline-offset: 5px; text-decoration-color: var(--w3); }
 
@@ -188,11 +215,6 @@ h1 .l:first-child { flex: 9 1 0; } h1 .l:last-child { flex: 5 1 0; }
 .strip.four { grid-auto-flow: row; grid-template-columns: repeat(4, minmax(0, 1fr)); }
 @media (max-width: 760px) { .strip.four { grid-auto-flow: column; grid-template-columns: none; grid-auto-columns: 64vw; } }
 
-/* Hero picker: for choosing the hero video, removed once one is chosen */
-.pick { position: absolute; left: var(--gl); top: calc(env(safe-area-inset-top, 0px) + 58px); z-index: 3; display: flex; align-items: center; gap: 6px; font-family: var(--mono); font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: rgba(255, 255, 255, .86); }
-.pick button { width: 30px; height: 30px; padding: 0; border-radius: 50%; border: 1px solid rgba(255, 255, 255, .5); background: rgba(0, 0, 0, .35); color: var(--w); cursor: pointer; font: inherit; letter-spacing: 0; backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
-.pick button:hover, .pick button.on { background: var(--w); color: var(--k); }
-@media (max-width: 760px) { .pick { left: 0; right: 0; justify-content: center; top: calc(env(safe-area-inset-top, 0px) + 112px); } }
 
 /* About: numbers around a portrait */
 .me { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1.5fr) minmax(0, 1fr) minmax(0, 1fr); gap: clamp(10px, 2vw, 30px); align-items: center; }
@@ -248,7 +270,8 @@ h1 .l:first-child { flex: 9 1 0; } h1 .l:last-child { flex: 5 1 0; }
 
 /* Timeline rows, mirrored on the page's axis */
 .rows { margin-top: clamp(32px, 5vw, 56px); text-align: left; }
-.row { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(20px, 4vw, 56px); padding-block: 16px; }
+.row { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(20px, 4vw, 56px); padding-block: 16px; border-top: 1px solid var(--h); }
+.row:last-child { border-bottom: 1px solid var(--h); }
 .row .w { text-align: right; font-family: var(--mono); font-size: 13px; letter-spacing: .12em; color: var(--w3); padding-top: 4px; text-transform: uppercase; }
 .row .d { color: var(--w2); }
 .row .d b { color: var(--w); font-weight: 500; }
@@ -259,7 +282,7 @@ h1 .l:first-child { flex: 9 1 0; } h1 .l:last-child { flex: 5 1 0; }
 #sun { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; visibility: hidden; }
 main { position: relative; z-index: 1; }
 .after { background: transparent; min-height: 100vh; display: flex; align-items: flex-end; }
-.after .wrap { width: 100%; padding-top: 62vh; padding-bottom: clamp(32px, 5vw, 52px); }
+.after .wrap { width: 100%; padding-top: 58vh; padding-bottom: clamp(32px, 5vw, 52px); }
 .mail { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 12px 18px; margin-top: clamp(26px, 4vw, 40px); }
 .mail span { font-family: var(--mono); font-size: clamp(1rem, 2vw, 1.4rem); overflow-wrap: anywhere; user-select: all; }
 .mini { cursor: pointer; font-family: var(--mono); font-size: 11px; letter-spacing: .16em; text-transform: uppercase; color: var(--w); background: transparent; border: 1px solid var(--w3); border-radius: 999px; padding: 8px 14px; }
@@ -278,35 +301,15 @@ main { position: relative; z-index: 1; }
 <header class="hud">
   <nav aria-label="Sections"><a href="#art">Art</a><a href="#twin">Twin</a><a href="#work">Companies</a></nav>
   <button class="bpm" id="bpm" type="button" title="Play a techno loop generated live in your browser"><i></i><span>132 BPM</span></button>
-  <nav aria-label="More sections"><a href="#me">Life</a><a href="#underground">Underground</a><a href="#after">Contact</a></nav>
+  <nav aria-label="More sections"><a href="#friends">People</a><a href="#lens">Nature</a><a href="#after">Cosmos</a></nav>
+  <span class="chap" id="chap" aria-hidden="true"></span>
 </header>
 
 <main>
   <section class="hero" id="top">
-    <video class="sky" autoplay muted loop playsinline preload="auto" aria-label="Alejandro and Alberto in San Francisco: walking the city, building in the office, and talking with the Golden Gate Bridge behind them"></video>
-    <p class="note"><span id="nt">San Francisco · 2026</span></p>
-    <div class="pick" role="group" aria-label="Choose the hero video"><span>Hero</span><button type="button" data-h="1">1</button><button type="button" data-h="2">2</button><button type="button" data-h="3">3</button></div>
-    <script>(() => {
-      // [desktop clip, phone clip, label]
-      const H = {
-        1: ['fc_edit', 'fc_edit_m', 'San Francisco · 2026'],
-        2: ['fc_wall', 'fc_wall_m', 'Golden Gate · 2026'],
-        3: ['fc_code', 'fc_code_m', '8am · San Francisco']
-      };
-      const v = document.querySelector('.sky'), btns = document.querySelectorAll('.pick button');
-      const small = matchMedia('(max-width: 760px)').matches;
-      const set = (n, keep) => {
-        const h = H[n] || H[1], c = small ? h[1] : h[0];
-        delete v.dataset.rescued;
-        v.poster = `m/${c}.jpg`; v.src = `m/${c}.mp4`;
-        document.getElementById('nt').textContent = h[2];
-        btns.forEach((b) => b.classList.toggle('on', b.dataset.h === String(H[n] ? n : 1)));
-        if (!keep) { try { history.replaceState(null, '', `?hero=${n}`); } catch (e) {} }
-        v.play().catch(() => {});
-      };
-      btns.forEach((b) => b.addEventListener('click', () => set(+b.dataset.h)));
-      set(+new URLSearchParams(location.search).get('hero') || 1, true);
-    })();</script>
+    <video class="sky" autoplay muted loop playsinline preload="auto" aria-label="A collage of Alejandro and Alberto in San Francisco: 12 AM at the office, talking with the Golden Gate Bridge behind them, walking the city, coding side by side"></video>
+    <script>(() => { const v = document.querySelector('.sky'), c = matchMedia('(max-width: 760px)').matches ? 'fc_collage_m' : 'fc_collage'; v.poster = `m/${c}.jpg`; v.src = `m/${c}.mp4`; })();</script>
+    <p class="note">12 AM, San Francisco<br>Building with my brother</p>
     <div class="hero-t">
       <h1 aria-label="Alejandro Rosas">
         <span class="l" aria-hidden="true"><span>A</span><span>L</span><span>E</span><span>J</span><span>A</span><span>N</span><span>D</span><span>R</span><span>O</span></span>
@@ -316,9 +319,27 @@ main { position: relative; z-index: 1; }
     </div>
   </section>
 
+  <section id="index">
+    <div class="wrap pad" style="padding-bottom:0">
+      <div class="idx">
+        <p class="where">Barcelona · San Francisco · B. 1997</p>
+        <p class="intro"><b>Alejandro Rosas.</b> Co-founder and CTO of <a href="https://didit.me" target="_blank" rel="noopener">Didit</a> (YC W26), co-founder of <a href="https://santeclinics.com" target="_blank" rel="noopener">Santé</a>, identical twin. <b>I love my people, the sea and the mountains, the art of creating, and the idea of a future among the stars.</b> This page is all of it.</p>
+        <ol class="toc">
+          <li><a href="#art"><span class="n">01</span><span class="t">Art</span><span class="d">Building companies is how I make art, and how I love.</span><span class="a">↓</span></a></li>
+          <li><a href="#twin"><span class="n">02</span><span class="t">Twin</span><span class="d">Alberto, Alba and Andrea. From two baby bouncers to today.</span><span class="a">↓</span></a></li>
+          <li><a href="#work"><span class="n">03</span><span class="t">Companies</span><span class="d">Gamium, Santé, Didit. One failure, two survivors, one brother.</span><span class="a">↓</span></a></li>
+          <li><a href="#friends"><span class="n">04</span><span class="t">People</span><span class="d">The friends who make all of it worth it.</span><span class="a">↓</span></a></li>
+          <li><a href="#lens"><span class="n">05</span><span class="t">Nature</span><span class="d">Sea, mountains and buildings, through my own lens.</span><span class="a">↓</span></a></li>
+          <li><a href="#me"><span class="n">06</span><span class="t">Alive</span><span class="d">Sky, sport and techno. Not one sip of alcohol.</span><span class="a">↓</span></a></li>
+          <li><a href="#after"><span class="n">07</span><span class="t">Cosmos</span><span class="d">The galaxy, and the biggest secrets in it.</span><span class="a">↓</span></a></li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
   <section id="art">
     <div class="wrap pad c">
-      <span class="mark">Art</span>
+      <span class="mark">01 · Art</span>
       <h2 class="big"><span>Building companies</span><span>is my art.</span></h2>
       <div class="say">
         <p>Some people paint. Some people write songs. I build companies.</p>
@@ -339,7 +360,7 @@ main { position: relative; z-index: 1; }
 
   <section id="twin">
     <div class="wrap pad c" style="padding-top:0">
-      <span class="mark">Twin</span>
+      <span class="mark">02 · Twin</span>
       <h2 class="big">There are two of me.</h2>
       <p class="lede">Alberto is my identical twin. <strong>My co-founder, my training partner, my rival and my best friend, all in one person.</strong> More than 10 years building companies together. Every company I have ever started, I started with him.</p>
       <img class="twins" src="m/t_dubai.webp" width="1560" height="1170" loading="lazy" alt="Alejandro and Alberto Rosas, identical twins, in black at night with the Dubai skyline behind them">
@@ -359,9 +380,9 @@ main { position: relative; z-index: 1; }
           <small>Me on us, September 2026</small>
         </div>
       </div>
-      <div class="duo" data-g>
-        <figure data-c="Quién es quién? With our cousin Adrian."><button type="button"><img src="m/c_kids.webp" width="1284" height="1000" loading="lazy" alt="The twins as children in matching striped polo shirts on a boat, with their cousin Adrian between them"></button><figcaption class="cap">Quién es quién? With our cousin Adrian.</figcaption></figure>
-        <figure data-c="San Francisco, 2026"><button type="button"><img src="m/t_hand.webp" width="1400" height="1050" loading="lazy" alt="Alejandro and Alberto shaking hands in profile on a street in San Francisco"></button><figcaption class="cap">San Francisco, 2026</figcaption></figure>
+      <div class="just" data-g style="margin-top:clamp(32px,5vw,60px)">
+        <figure data-c="Quién es quién? With our cousin Adrian." style="flex:1.284 1 0"><button type="button"><img src="m/c_kids.webp" width="1284" height="1000" loading="lazy" alt="The twins as children in matching striped polo shirts on a boat, with their cousin Adrian between them"></button><figcaption class="cap">Quién es quién? With our cousin Adrian.</figcaption></figure>
+        <figure data-c="San Francisco" style="flex:0.666 1 0"><button type="button"><img src="m/t_hand.webp" width="1000" height="1501" loading="lazy" alt="Alejandro and Alberto in black, shaking hands on a street in San Francisco"></button><figcaption class="cap">San Francisco</figcaption></figure>
       </div>
       <p class="lede" style="margin-top:clamp(44px,6vw,72px)">At eleven we were building websites and brute-forcing our neighbours' wifi. We promoted clubs in Barcelona we were too young to enter. We studied together, we share bank accounts, and we have made about 20 angel bets together. There are no politics between us, because there can't be. <strong>Building with him is the purest form of love I know.</strong></p>
       <div class="duo" data-g>
@@ -391,13 +412,14 @@ main { position: relative; z-index: 1; }
         <div class="era"><p class="yr">Family</p><div class="just">
           <figure data-c="" style="flex:0.75 1 0"><button type="button"><img src="m/t_14.webp" width="1000" height="1333" loading="lazy" alt="The family on a pebble beach"></button></figure>
           <figure data-c="" style="flex:0.75 1 0"><button type="button"><img src="m/t_fam1.webp" width="1000" height="1333" loading="lazy" alt="The family together on a seaside promenade under a blue sky, a dog in front"></button></figure>
-          <figure data-c="" style="flex:0.75 1 0"><button type="button"><img src="m/t_fam2.webp" width="1000" height="1333" loading="lazy" alt="The family together at home"></button></figure>
+          <figure data-c="" style="flex:0.75 1 0"><button type="button"><img src="m/t_fam2.webp" width="1000" height="1333" loading="lazy" alt="The twins in dark jackets in a garden, with a woman in a long dress and a little girl in a white dress"></button></figure>
           <figure data-c="" style="flex:0.75 1 0"><button type="button"><img src="m/t_fam3.webp" width="1000" height="1333" loading="lazy" alt="The family at home around a birthday cake"></button></figure>
         </div></div>
         <div class="era"><p class="yr">Andrea</p><div class="just">
           <figure data-c="" style="flex:1.0 1 0"><button type="button"><img src="m/t_an1.webp" width="207" height="207" loading="lazy" alt="Alejandro with his little sister when she was very young"></button></figure>
-          <figure data-c="" style="flex:0.75 1 0"><button type="button"><img src="m/t_an2.webp" width="1000" height="1333" loading="lazy" alt="Alejandro and Alberto with their little sister"></button></figure>
-          <figure data-c="" style="flex:0.75 1 0"><button type="button"><img src="m/t_an3.webp" width="900" height="1200" loading="lazy" alt="Alejandro with his little sister"></button></figure>
+          <figure data-c="" style="flex:0.75 1 0"><button type="button"><img src="m/t_an2.webp" width="900" height="1200" loading="lazy" alt="Andrea and one of the twins laughing at a table by the sea at night"></button></figure>
+          <figure data-c="" style="flex:0.75 1 0"><button type="button"><img src="m/t_an3.webp" width="900" height="1200" loading="lazy" alt="Andrea and one of the twins under a palm tree and a blue sky"></button></figure>
+          <figure data-c="" style="flex:0.75 1 0"><button type="button"><img src="m/t_an4.webp" width="900" height="1200" loading="lazy" alt="One of the twins carrying a very young Andrea, both pulling faces"></button></figure>
         </div></div>
         <div class="era"><p class="yr">2024 → 2026</p><div class="just">
           <figure data-c="China" style="flex:0.75 1 0"><button type="button"><img src="m/t_18.webp" width="1000" height="1333" loading="lazy" alt="The twins in winter coats in front of a pagoda"></button><figcaption class="cap">China</figcaption></figure>
@@ -405,7 +427,7 @@ main { position: relative; z-index: 1; }
           <figure data-c="" style="flex:0.75 1 0"><button type="button"><img src="m/t_25.webp" width="1000" height="1333" loading="lazy" alt="A selfie of the twins on a boat"></button></figure>
         </div><div class="just">
           <figure data-c="San Francisco" style="flex:0.717 1 0"><button type="button"><img src="m/t_sf.webp" width="900" height="1255" loading="lazy" alt="The twins in black t-shirts on a street in San Francisco"></button><figcaption class="cap">San Francisco</figcaption></figure>
-          <figure data-c="" style="flex:0.8 1 0"><button type="button"><img src="m/t_walk.webp" width="1000" height="1250" loading="lazy" alt="The twins walking with coffee on a sunny plaza"></button></figure>
+          <figure data-c="" style="flex:1.519 1 0"><button type="button"><img src="m/t_walk.webp" width="1200" height="790" loading="lazy" alt="The twins in black walking down a sunny street in San Francisco"></button></figure>
           <figure data-c="Dubai, October 2026" style="flex:0.75 1 0"><button type="button"><img src="m/t_dxb.webp" width="1000" height="1333" loading="lazy" alt="The twins in black at night with the Dubai skyline behind them"></button><figcaption class="cap">Dubai, October 2026</figcaption></figure>
         </div></div>
       </div>
@@ -415,7 +437,7 @@ main { position: relative; z-index: 1; }
 
   <section id="work">
     <div class="wrap pad c" style="padding-top:0">
-      <span class="mark">Companies</span>
+      <span class="mark">03 · Companies</span>
       <h2 class="big">Three companies. One brother.</h2>
       <p class="lede">From Barcelona to San Francisco. The one that failed is on this list too. It taught me the most.</p>
       <div class="tally">
@@ -497,8 +519,8 @@ main { position: relative; z-index: 1; }
         <div class="duo" data-g>
           <figure data-c="Y Combinator Demo Day, with Alberto"><button type="button"><img src="m/d_stage.webp" width="1400" height="933" loading="lazy" alt="Alejandro and Alberto on stage at Y Combinator Demo Day, one at a laptop and the other speaking into a microphone"></button><figcaption class="cap">Y Combinator Demo Day, with Alberto</figcaption></figure>
           <figure data-c="Out in the world"><button type="button"><img src="m/c_booth.webp" width="1400" height="933" loading="lazy" alt="The Didit stand at a trade show, with the team talking to visitors"></button><figcaption class="cap">Out in the world</figcaption></figure>
-          <figure data-c="Building, side by side"><button type="button"><img src="m/d_side.webp" width="1400" height="840" loading="lazy" alt="Alejandro and Alberto working together at a desk, seen from above"></button><figcaption class="cap">Building, side by side</figcaption></figure>
-          <figure data-c="San Francisco"><button type="button"><img src="m/d_loft.webp" width="1400" height="812" loading="lazy" alt="The team walking through a brick and timber office in San Francisco"></button><figcaption class="cap">San Francisco</figcaption></figure>
+          <figure data-c="Building, side by side"><button type="button"><img src="m/d_side.webp" width="1400" height="788" loading="lazy" alt="Alejandro and Alberto at two matching desks by the windows, seen from behind"></button><figcaption class="cap">Building, side by side</figcaption></figure>
+          <figure data-c="San Francisco"><button type="button"><img src="m/d_loft.webp" width="1400" height="788" loading="lazy" alt="Alejandro and Alberto in black t-shirts, side by side on an empty office floor"></button><figcaption class="cap">San Francisco</figcaption></figure>
         </div>
         <figure class="full" style="max-width:880px;margin-inline:auto"><video data-src="m/v_1am.mp4" poster="m/v_1am.jpg" muted loop playsinline aria-label="Alejandro in a hoodie at his desk in the San Francisco office at midnight"></video><figcaption class="cap">12 AM, SF office</figcaption></figure>
         <p class="out"><a href="https://didit.me" target="_blank" rel="noopener">didit.me ↗</a><a href="https://www.ycombinator.com/companies/didit" target="_blank" rel="noopener">Y Combinator ↗</a></p>
@@ -536,18 +558,45 @@ main { position: relative; z-index: 1; }
     </div>
   </section>
 
+  <section id="friends">
+    <div class="wrap pad" style="padding-top:0">
+      <div class="c">
+        <span class="mark">04 · People</span>
+        <h2>My people.</h2>
+        <p class="lede"><strong>I love my people.</strong> You are the average of your five closest friends, and I got lucky with mine. Same table, same dance floor, same bad ideas, for years.</p>
+      </div>
+      <div class="mason three block" data-g><figure data-c="September 2026"><button type="button"><img src="m/g_seat.webp" width="1000" height="933" loading="lazy" alt="Alejandro with friends: September 2026"></button><figcaption>September 2026</figcaption></figure><figure data-c="Summer &#x27;24, with a bunch of animals"><button type="button"><img src="m/p_friends.webp" width="1100" height="1375" loading="lazy" alt="Alejandro with friends: Summer &#x27;24, with a bunch of animals"></button><figcaption>Summer &#x27;24, with a bunch of animals</figcaption></figure><figure data-c=""><button type="button"><img src="m/f_jess.webp" width="900" height="1599" loading="lazy" alt="Alejandro with friends"></button></figure><figure data-c=""><button type="button"><img src="m/p_club.webp" width="1100" height="1375" loading="lazy" alt="Alejandro with friends"></button></figure><figure data-c="Bodrum, 2026"><button type="button"><img src="m/f_boat.webp" width="1400" height="766" loading="lazy" alt="Alejandro with friends: Bodrum, 2026"></button><figcaption>Bodrum, 2026</figcaption></figure><figure data-c=""><button type="button"><img src="m/f_castle.webp" width="1100" height="1662" loading="lazy" alt="Alejandro with friends"></button></figure><figure data-c=""><button type="button"><img src="m/f_lunch.webp" width="1000" height="750" loading="lazy" alt="Alejandro with friends"></button></figure><figure data-c="Barcelona"><button type="button"><img src="m/f_barca.webp" width="1100" height="1701" loading="lazy" alt="Alejandro with friends: Barcelona"></button><figcaption>Barcelona</figcaption></figure><figure data-c=""><button type="button"><img src="m/f_jess2.webp" width="900" height="1200" loading="lazy" alt="Alejandro with friends"></button></figure><figure data-c=""><button type="button"><img src="m/f_boys.webp" width="900" height="1200" loading="lazy" alt="Alejandro with friends"></button></figure><figure data-c="Los años pasan pero seguimos igual"><button type="button"><img src="m/f_hug.webp" width="1100" height="1681" loading="lazy" alt="Alejandro with friends: Los años pasan pero seguimos igual"></button><figcaption>Los años pasan pero seguimos igual</figcaption></figure><figure data-c="Bodrum, 2026"><button type="button"><img src="m/f_deck.webp" width="900" height="960" loading="lazy" alt="Alejandro with friends: Bodrum, 2026"></button><figcaption>Bodrum, 2026</figcaption></figure><figure data-c=""><button type="button"><img src="m/f_friends24.webp" width="1100" height="1193" loading="lazy" alt="Alejandro with friends"></button></figure></div>
+    </div>
+  </section>
+
+  <section id="lens">
+    <div class="wrap pad" style="padding-top:0">
+      <div class="c">
+        <span class="mark">05 · Nature</span>
+        <h2>Through my lens.</h2>
+        <p class="lede"><strong>The sea and the mountains are where I go to feel small.</strong> I take portraits of them, and of the buildings people dared to make. Every photo here is mine. Click any of them.</p>
+      </div>
+      <div class="block"><h3>Nature</h3>
+        <div class="mason" data-g><figure data-c="Eidfjord, Norway"><button type="button"><img src="m/p_fjord_back.webp" width="900" height="1200" loading="lazy" alt="Photo of nature by Alejandro: Eidfjord, Norway"></button><figcaption>Eidfjord, Norway</figcaption></figure><figure data-c=""><button type="button"><img src="m/n_sea.webp" width="900" height="1601" loading="lazy" alt="Photo of nature by Alejandro"></button></figure><figure data-c="What a day to be alive"><button type="button"><img src="m/n_sunrise.webp" width="900" height="1375" loading="lazy" alt="Photo of nature by Alejandro: What a day to be alive"></button><figcaption>What a day to be alive</figcaption></figure><figure data-c="Norway"><video data-src="m/clouds.mp4" poster="m/clouds.jpg" muted loop playsinline aria-label="Norway"></video><figcaption>Norway</figcaption></figure><figure data-c="Lake Tahoe"><button type="button"><img src="m/n_tahoe.webp" width="828" height="1280" loading="lazy" alt="Photo of nature by Alejandro: Lake Tahoe"></button><figcaption>Lake Tahoe</figcaption></figure><figure data-c="Kelingking, Nusa Penida"><button type="button"><img src="m/n_kelingking.webp" width="640" height="999" loading="lazy" alt="Photo of nature by Alejandro: Kelingking, Nusa Penida"></button><figcaption>Kelingking, Nusa Penida</figcaption></figure><figure data-c=""><button type="button"><img src="m/n_mtn.webp" width="828" height="1472" loading="lazy" alt="Photo of nature by Alejandro"></button></figure><figure data-c="Norway"><button type="button"><img src="m/p_bridge.webp" width="900" height="1200" loading="lazy" alt="Photo of nature by Alejandro: Norway"></button><figcaption>Norway</figcaption></figure><figure data-c=""><button type="button"><img src="m/n_sunset_sea.webp" width="640" height="1136" loading="lazy" alt="Photo of nature by Alejandro"></button></figure><figure data-c="Ubud, Bali"><button type="button"><img src="m/n_jungle.webp" width="640" height="1011" loading="lazy" alt="Photo of nature by Alejandro: Ubud, Bali"></button><figcaption>Ubud, Bali</figcaption></figure><figure data-c="Gili Trawangan"><button type="button"><img src="m/n_sea23b.webp" width="900" height="1375" loading="lazy" alt="Photo of nature by Alejandro: Gili Trawangan"></button><figcaption>Gili Trawangan</figcaption></figure><figure data-c=""><button type="button"><img src="m/n_sierra.webp" width="828" height="1354" loading="lazy" alt="Photo of nature by Alejandro"></button></figure><figure data-c=""><button type="button"><img src="m/n_valley.webp" width="640" height="1136" loading="lazy" alt="Photo of nature by Alejandro"></button></figure><figure data-c="Ibiza"><button type="button"><img src="m/n_ibiza.webp" width="900" height="1328" loading="lazy" alt="Photo of nature by Alejandro: Ibiza"></button><figcaption>Ibiza</figcaption></figure><figure data-c=""><button type="button"><img src="m/n_forest.webp" width="640" height="988" loading="lazy" alt="Photo of nature by Alejandro"></button></figure><figure data-c="Naples"><button type="button"><img src="m/n_hills.webp" width="900" height="1392" loading="lazy" alt="Photo of nature by Alejandro: Naples"></button><figcaption>Naples</figcaption></figure><figure data-c=""><button type="button"><img src="m/n_sunset25.webp" width="900" height="1600" loading="lazy" alt="Photo of nature by Alejandro"></button></figure><figure data-c=""><button type="button"><img src="m/n_jungle2.webp" width="1000" height="1777" loading="lazy" alt="Photo of nature by Alejandro"></button></figure><figure data-c="Bali"><button type="button"><img src="m/n_rice.webp" width="640" height="1136" loading="lazy" alt="Photo of nature by Alejandro: Bali"></button><figcaption>Bali</figcaption></figure><figure data-c=""><button type="button"><img src="m/n_sierra2.webp" width="828" height="1472" loading="lazy" alt="Photo of nature by Alejandro"></button></figure><figure data-c="Norway"><button type="button"><img src="m/n_post.webp" width="1000" height="1333" loading="lazy" alt="Photo of nature by Alejandro: Norway"></button><figcaption>Norway</figcaption></figure></div>
+      </div>
+      <div class="block"><h3>Buildings</h3>
+        <div class="mason" data-g><figure data-c="Dubai"><button type="button"><img src="m/b_burj.webp" width="900" height="1600" loading="lazy" alt="Photo of a building by Alejandro: Dubai"></button><figcaption>Dubai</figcaption></figure><figure data-c="Heddal, Norway"><button type="button"><img src="m/p_stave.webp" width="900" height="1200" loading="lazy" alt="Photo of a building by Alejandro: Heddal, Norway"></button><figcaption>Heddal, Norway</figcaption></figure><figure data-c="New York"><button type="button"><img src="m/b_oculus.webp" width="828" height="1118" loading="lazy" alt="Photo of a building by Alejandro: New York"></button><figcaption>New York</figcaption></figure><figure data-c="Paris"><button type="button"><img src="m/b_eiffel.webp" width="900" height="1600" loading="lazy" alt="Photo of a building by Alejandro: Paris"></button><figcaption>Paris</figcaption></figure><figure data-c="Madrid"><button type="button"><img src="m/b_gran_via.webp" width="900" height="1600" loading="lazy" alt="Photo of a building by Alejandro: Madrid"></button><figcaption>Madrid</figcaption></figure><figure data-c="Dubai"><button type="button"><img src="m/b_spiral.webp" width="900" height="1487" loading="lazy" alt="Photo of a building by Alejandro: Dubai"></button><figcaption>Dubai</figcaption></figure><figure data-c="Beijing"><button type="button"><img src="m/b_beijing.webp" width="900" height="1600" loading="lazy" alt="Photo of a building by Alejandro: Beijing"></button><figcaption>Beijing</figcaption></figure><figure data-c="Madrid"><button type="button"><img src="m/b_white.webp" width="828" height="1472" loading="lazy" alt="Photo of a building by Alejandro: Madrid"></button><figcaption>Madrid</figcaption></figure><figure data-c="Bangkok"><button type="button"><img src="m/b_city_night.webp" width="828" height="1178" loading="lazy" alt="Photo of a building by Alejandro: Bangkok"></button><figcaption>Bangkok</figcaption></figure><figure data-c="Barcelona"><button type="button"><img src="m/b_sagrada_city.webp" width="900" height="1392" loading="lazy" alt="Photo of a building by Alejandro: Barcelona"></button><figcaption>Barcelona</figcaption></figure><figure data-c="Paris"><button type="button"><img src="m/b_paris.webp" width="640" height="954" loading="lazy" alt="Photo of a building by Alejandro: Paris"></button><figcaption>Paris</figcaption></figure><figure data-c="San Francisco"><button type="button"><img src="m/b_gg.webp" width="900" height="1455" loading="lazy" alt="Photo of a building by Alejandro: San Francisco"></button><figcaption>San Francisco</figcaption></figure><figure data-c=""><button type="button"><img src="m/b_dam.webp" width="900" height="1600" loading="lazy" alt="Photo of a building by Alejandro"></button></figure><figure data-c="San Francisco"><button type="button"><img src="m/b_sf.webp" width="900" height="1600" loading="lazy" alt="Photo of a building by Alejandro: San Francisco"></button><figcaption>San Francisco</figcaption></figure><figure data-c=""><button type="button"><img src="m/b_courts.webp" width="1000" height="1777" loading="lazy" alt="Photo of a building by Alejandro"></button></figure><figure data-c=""><button type="button"><img src="m/b_stairs.webp" width="828" height="1310" loading="lazy" alt="Photo of a building by Alejandro"></button></figure><figure data-c="Dubai"><button type="button"><img src="m/b_dome.webp" width="1000" height="1333" loading="lazy" alt="Photo of a building by Alejandro: Dubai"></button><figcaption>Dubai</figcaption></figure></div>
+      </div>
+    </div>
+  </section>
+
   <section id="me">
     <div class="wrap pad c" style="padding-top:0">
-      <span class="mark">Life</span>
-      <h2 class="big" style="margin-bottom:clamp(44px,7vw,84px)">And the rest of me.</h2>
+      <span class="mark">06 · Alive</span>
+      <h2 class="big" style="margin-bottom:clamp(44px,7vw,84px)">Fully alive.</h2>
       <div class="me">
         <div class="num"><b>5</b><span>The age I started sport. I never stopped.</span></div>
         <div class="num"><b>0</b><span>Sips of alcohol since COVID. Not one.</span></div>
-        <figure><img src="m/p_bw.webp" width="1100" height="1237" loading="lazy" alt="Black and white portrait of Alejandro, arms crossed, looking straight at the camera"></figure>
+        <figure><img src="m/p_bw.webp" width="1100" height="1277" loading="lazy" alt="Black and white portrait of Alejandro, arms crossed, looking straight at the camera"></figure>
         <div class="num"><b>1</b><span>Color I wear. Black, every day, for years.</span></div>
         <div class="num"><b>2</b><span>Of us. Still an identical twin.</span></div>
       </div>
-      <p class="lede">Born in Barcelona in 1997. I jump out of planes, box, play tennis, shoot photos of mountains and buildings, and dance to techno stone sober.</p>
+      <p class="lede">Born in Barcelona in 1997. I jump out of planes, box, play tennis and dance to techno stone sober. It is the same fire as the companies. <strong>Life is too good to watch from the side.</strong></p>
       <p class="loves">Black · Symmetry · Space · Post-AGI futures · Sea · Mountains · Techno</p>
     </div>
   </section>
@@ -606,22 +655,6 @@ main { position: relative; z-index: 1; }
     </div>
   </section>
 
-  <section id="lens">
-    <div class="wrap pad" style="padding-top:0">
-      <div class="c">
-        <span class="mark">Lens</span>
-        <h2>Through my lens.</h2>
-        <p class="lede">I like taking good portraits of nature and buildings. Every photo here is mine. Click any of them.</p>
-      </div>
-      <div class="block"><h3>Nature</h3>
-        <div class="mason" data-g><figure data-c="Eidfjord, Norway"><button type="button"><img src="m/p_fjord_back.webp" width="900" height="1200" loading="lazy" alt="Photo of nature by Alejandro: Eidfjord, Norway"></button><figcaption>Eidfjord, Norway</figcaption></figure><figure data-c=""><button type="button"><img src="m/n_sea.webp" width="900" height="1601" loading="lazy" alt="Photo of nature by Alejandro"></button></figure><figure data-c="What a day to be alive"><button type="button"><img src="m/n_sunrise.webp" width="900" height="1375" loading="lazy" alt="Photo of nature by Alejandro: What a day to be alive"></button><figcaption>What a day to be alive</figcaption></figure><figure data-c="Norway"><video data-src="m/clouds.mp4" poster="m/clouds.jpg" muted loop playsinline aria-label="Norway"></video><figcaption>Norway</figcaption></figure><figure data-c="Lake Tahoe"><button type="button"><img src="m/n_tahoe.webp" width="828" height="1280" loading="lazy" alt="Photo of nature by Alejandro: Lake Tahoe"></button><figcaption>Lake Tahoe</figcaption></figure><figure data-c="Kelingking, Nusa Penida"><button type="button"><img src="m/n_kelingking.webp" width="640" height="999" loading="lazy" alt="Photo of nature by Alejandro: Kelingking, Nusa Penida"></button><figcaption>Kelingking, Nusa Penida</figcaption></figure><figure data-c=""><button type="button"><img src="m/n_moon.webp" width="900" height="1216" loading="lazy" alt="Photo of nature by Alejandro"></button></figure><figure data-c=""><button type="button"><img src="m/n_mtn.webp" width="828" height="1472" loading="lazy" alt="Photo of nature by Alejandro"></button></figure><figure data-c="Norway"><button type="button"><img src="m/p_bridge.webp" width="900" height="1200" loading="lazy" alt="Photo of nature by Alejandro: Norway"></button><figcaption>Norway</figcaption></figure><figure data-c=""><button type="button"><img src="m/n_sunset_sea.webp" width="640" height="1136" loading="lazy" alt="Photo of nature by Alejandro"></button></figure><figure data-c="Ubud, Bali"><button type="button"><img src="m/n_jungle.webp" width="640" height="1011" loading="lazy" alt="Photo of nature by Alejandro: Ubud, Bali"></button><figcaption>Ubud, Bali</figcaption></figure><figure data-c="Gili Trawangan"><button type="button"><img src="m/n_sea23b.webp" width="900" height="1375" loading="lazy" alt="Photo of nature by Alejandro: Gili Trawangan"></button><figcaption>Gili Trawangan</figcaption></figure><figure data-c=""><button type="button"><img src="m/n_sierra.webp" width="828" height="1354" loading="lazy" alt="Photo of nature by Alejandro"></button></figure><figure data-c=""><button type="button"><img src="m/n_valley.webp" width="640" height="1136" loading="lazy" alt="Photo of nature by Alejandro"></button></figure><figure data-c="Ibiza"><button type="button"><img src="m/n_ibiza.webp" width="900" height="1328" loading="lazy" alt="Photo of nature by Alejandro: Ibiza"></button><figcaption>Ibiza</figcaption></figure><figure data-c=""><button type="button"><img src="m/n_forest.webp" width="640" height="988" loading="lazy" alt="Photo of nature by Alejandro"></button></figure><figure data-c="Naples"><button type="button"><img src="m/n_hills.webp" width="900" height="1392" loading="lazy" alt="Photo of nature by Alejandro: Naples"></button><figcaption>Naples</figcaption></figure><figure data-c=""><button type="button"><img src="m/n_sunset25.webp" width="900" height="1600" loading="lazy" alt="Photo of nature by Alejandro"></button></figure><figure data-c=""><button type="button"><img src="m/n_jungle2.webp" width="1000" height="1777" loading="lazy" alt="Photo of nature by Alejandro"></button></figure><figure data-c="Bali"><button type="button"><img src="m/n_rice.webp" width="640" height="1136" loading="lazy" alt="Photo of nature by Alejandro: Bali"></button><figcaption>Bali</figcaption></figure><figure data-c=""><button type="button"><img src="m/n_sierra2.webp" width="828" height="1472" loading="lazy" alt="Photo of nature by Alejandro"></button></figure><figure data-c="Norway"><button type="button"><img src="m/n_post.webp" width="1000" height="1333" loading="lazy" alt="Photo of nature by Alejandro: Norway"></button><figcaption>Norway</figcaption></figure></div>
-      </div>
-      <div class="block"><h3>Buildings</h3>
-        <div class="mason" data-g><figure data-c="Dubai"><button type="button"><img src="m/b_burj.webp" width="900" height="1600" loading="lazy" alt="Photo of a building by Alejandro: Dubai"></button><figcaption>Dubai</figcaption></figure><figure data-c="Heddal, Norway"><button type="button"><img src="m/p_stave.webp" width="900" height="1200" loading="lazy" alt="Photo of a building by Alejandro: Heddal, Norway"></button><figcaption>Heddal, Norway</figcaption></figure><figure data-c="New York"><button type="button"><img src="m/b_oculus.webp" width="828" height="1118" loading="lazy" alt="Photo of a building by Alejandro: New York"></button><figcaption>New York</figcaption></figure><figure data-c="Paris"><button type="button"><img src="m/b_eiffel.webp" width="900" height="1600" loading="lazy" alt="Photo of a building by Alejandro: Paris"></button><figcaption>Paris</figcaption></figure><figure data-c="Madrid"><button type="button"><img src="m/b_gran_via.webp" width="900" height="1600" loading="lazy" alt="Photo of a building by Alejandro: Madrid"></button><figcaption>Madrid</figcaption></figure><figure data-c="Dubai"><button type="button"><img src="m/b_spiral.webp" width="900" height="1487" loading="lazy" alt="Photo of a building by Alejandro: Dubai"></button><figcaption>Dubai</figcaption></figure><figure data-c="Beijing"><button type="button"><img src="m/b_beijing.webp" width="900" height="1600" loading="lazy" alt="Photo of a building by Alejandro: Beijing"></button><figcaption>Beijing</figcaption></figure><figure data-c="Madrid"><button type="button"><img src="m/b_white.webp" width="828" height="1472" loading="lazy" alt="Photo of a building by Alejandro: Madrid"></button><figcaption>Madrid</figcaption></figure><figure data-c="Bangkok"><button type="button"><img src="m/b_city_night.webp" width="828" height="1178" loading="lazy" alt="Photo of a building by Alejandro: Bangkok"></button><figcaption>Bangkok</figcaption></figure><figure data-c="Barcelona"><button type="button"><img src="m/b_sagrada_city.webp" width="900" height="1392" loading="lazy" alt="Photo of a building by Alejandro: Barcelona"></button><figcaption>Barcelona</figcaption></figure><figure data-c="Paris"><button type="button"><img src="m/b_paris.webp" width="640" height="954" loading="lazy" alt="Photo of a building by Alejandro: Paris"></button><figcaption>Paris</figcaption></figure><figure data-c="San Francisco"><button type="button"><img src="m/b_gg.webp" width="900" height="1455" loading="lazy" alt="Photo of a building by Alejandro: San Francisco"></button><figcaption>San Francisco</figcaption></figure><figure data-c=""><button type="button"><img src="m/b_dam.webp" width="900" height="1600" loading="lazy" alt="Photo of a building by Alejandro"></button></figure><figure data-c="San Francisco"><button type="button"><img src="m/b_sf.webp" width="900" height="1600" loading="lazy" alt="Photo of a building by Alejandro: San Francisco"></button><figcaption>San Francisco</figcaption></figure><figure data-c=""><button type="button"><img src="m/b_courts.webp" width="1000" height="1777" loading="lazy" alt="Photo of a building by Alejandro"></button></figure><figure data-c=""><button type="button"><img src="m/b_stairs.webp" width="828" height="1310" loading="lazy" alt="Photo of a building by Alejandro"></button></figure><figure data-c="Dubai"><button type="button"><img src="m/b_dome.webp" width="1000" height="1333" loading="lazy" alt="Photo of a building by Alejandro: Dubai"></button><figcaption>Dubai</figcaption></figure></div>
-      </div>
-    </div>
-  </section>
-
   <section id="underground">
     <div class="wrap pad c" style="padding-top:0">
       <span class="mark">Underground</span>
@@ -636,23 +669,22 @@ main { position: relative; z-index: 1; }
     </div>
   </section>
 
-  <section id="friends">
-    <div class="wrap pad" style="padding-top:0">
-      <div class="c">
-        <span class="mark">Friends</span>
-        <h2>My people.</h2>
-        <p class="lede">You are the average of your five closest friends. I got lucky with mine. Same table, same dance floor, same bad ideas, for years.</p>
-      </div>
-      <div class="mason three block" data-g><figure data-c="September 2026"><button type="button"><img src="m/g_seat.webp" width="1000" height="933" loading="lazy" alt="Alejandro with friends: September 2026"></button><figcaption>September 2026</figcaption></figure><figure data-c="Summer &#x27;24, with a bunch of animals"><button type="button"><img src="m/p_friends.webp" width="1100" height="1375" loading="lazy" alt="Alejandro with friends: Summer &#x27;24, with a bunch of animals"></button><figcaption>Summer &#x27;24, with a bunch of animals</figcaption></figure><figure data-c=""><button type="button"><img src="m/f_jess.webp" width="900" height="1599" loading="lazy" alt="Alejandro with friends"></button></figure><figure data-c=""><button type="button"><img src="m/p_club.webp" width="1100" height="1375" loading="lazy" alt="Alejandro with friends"></button></figure><figure data-c="Bodrum, 2026"><button type="button"><img src="m/f_boat.webp" width="1400" height="766" loading="lazy" alt="Alejandro with friends: Bodrum, 2026"></button><figcaption>Bodrum, 2026</figcaption></figure><figure data-c=""><button type="button"><img src="m/f_castle.webp" width="1100" height="1662" loading="lazy" alt="Alejandro with friends"></button></figure><figure data-c=""><button type="button"><img src="m/f_lunch.webp" width="1000" height="750" loading="lazy" alt="Alejandro with friends"></button></figure><figure data-c="Barcelona"><button type="button"><img src="m/f_barca.webp" width="1100" height="1701" loading="lazy" alt="Alejandro with friends: Barcelona"></button><figcaption>Barcelona</figcaption></figure><figure data-c=""><button type="button"><img src="m/f_jess2.webp" width="900" height="1200" loading="lazy" alt="Alejandro with friends"></button></figure><figure data-c=""><button type="button"><img src="m/f_boys.webp" width="900" height="1200" loading="lazy" alt="Alejandro with friends"></button></figure><figure data-c="Los años pasan pero seguimos igual"><button type="button"><img src="m/f_hug.webp" width="1100" height="1681" loading="lazy" alt="Alejandro with friends: Los años pasan pero seguimos igual"></button><figcaption>Los años pasan pero seguimos igual</figcaption></figure><figure data-c="Bodrum, 2026"><button type="button"><img src="m/f_deck.webp" width="900" height="960" loading="lazy" alt="Alejandro with friends: Bodrum, 2026"></button><figcaption>Bodrum, 2026</figcaption></figure><figure data-c=""><button type="button"><img src="m/f_friends24.webp" width="1100" height="1193" loading="lazy" alt="Alejandro with friends"></button></figure></div>
-    </div>
-  </section>
-
   <section class="after" id="after">
     <div class="wrap c">
-      <span class="mark">After</span>
-      <h2 class="big">Just getting started.</h2>
-      <p class="lede">Post-AGI. Space. A future strange enough to look like science fiction. I want to build it, not watch it.</p>
+      <span class="mark">07 · Cosmos</span>
+      <h2 class="big">The biggest secrets are still out there.</h2>
+      <p class="lede">We have set foot on one moon. The rest of the galaxy is still waiting. <strong>I want to see humanity out there, exploring it, and I want us to answer the biggest questions there are.</strong></p>
+      <figure class="moon"><img src="m/c_moon.webp" width="560" height="560" loading="lazy" alt="The Moon on black, photographed by Alejandro"><figcaption class="cap">Shot by me. As far as we have walked.</figcaption></figure>
+      <ul class="open">
+        <li>What is the universe made of?</li>
+        <li>How did it begin?</li>
+        <li>What is consciousness?</li>
+        <li>Are we alone?</li>
+        <li>How far can we go?</li>
+      </ul>
+      <p class="lede">A future like that gets built by people who refuse to stop. That's the work. Everything on this page is practice.</p>
       <blockquote class="pull"><p>Dreaming higher than ever, not even death can stop a passionate soul in search of the light.</p><footer>My stories, November 2025</footer></blockquote>
+      <h3>Just getting started.</h3>
       <div class="mail"><span id="mail">alejandro.rosas@didit.me</span><button class="mini" id="copy" type="button">Copy</button></div>
       <ul class="links">
         <li><a href="https://www.instagram.com/_alejandrorosas/" target="_blank" rel="noopener">Instagram</a></li>
@@ -719,6 +751,12 @@ main { position: relative; z-index: 1; }
     b.words.forEach((w, i) => w.classList.toggle('on', i < n));
     b.lit = n;
   });
+
+  /* ---------- phone chapter marker ---------- */
+  const chap = $('#chap');
+  const CH = [['art', '01 Art'], ['twin', '02 Twin'], ['work', '03 Companies'], ['friends', '04 People'], ['lens', '05 Nature'], ['me', '06 Alive'], ['sky', '06 Alive'], ['sport', '06 Alive'], ['underground', '06 Alive'], ['after', '07 Cosmos']];
+  const chapIO = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) chap.textContent = CH.find((c) => c[0] === e.target.id)[1]; }), { rootMargin: '-45% 0px -50% 0px' });
+  CH.forEach((c) => chapIO.observe($(`#${c[0]}`)));
 
   /* ---------- lightbox ---------- */
   const lb = $('#lb'), li = $('#lb-i'), lc = $('#lb-c');

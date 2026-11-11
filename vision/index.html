@@ -68,6 +68,11 @@
   if (!('IntersectionObserver' in window)) { els.forEach((e) => e.classList.add('in')); return; }
   const io = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { rootMargin: '0px 0px -4% 0px' });
   els.forEach((e) => io.observe(e));
+  const vio = new IntersectionObserver((es) => es.forEach((e) => {
+    const v = e.target;
+    if (e.isIntersecting) { if (!v.src) v.src = v.dataset.src; v.play().catch(() => {}); } else v.pause();
+  }), { rootMargin: '120px' });
+  document.querySelectorAll('video.lv').forEach((v) => vio.observe(v));
   if (matchMedia('(hover: hover)').matches) addEventListener('pointermove', (ev) => {
     const c = ev.target.closest && ev.target.closest('.cell'); if (!c) return;
     const r = c.getBoundingClientRect(); c.style.setProperty('--mx', `${ev.clientX - r.left}px`); c.style.setProperty('--my', `${ev.clientY - r.top}px`);
@@ -78,7 +83,7 @@
 (() => {
   const cv = document.getElementById('sun'), box = cv.parentElement;
   const gl = cv.getContext('webgl', { antialias: false, alpha: false });
-  if (!gl) { box.style.background = 'radial-gradient(circle at 50% 34%, #000 0 15%, rgba(255,246,232,.9) 15.4%, rgba(255,255,255,.12) 20%, #000 46%)'; return; }
+  if (!gl) { box.style.background = 'radial-gradient(ellipse 46% 2.4% at 50% 35%, rgba(255,236,206,.85), transparent), radial-gradient(circle at 50% 35%, #000 0 15%, rgba(255,240,214,.9) 15.5%, rgba(255,214,170,.3) 18%, transparent 30%), #000'; return; }
   const sh = (t, s) => { const o = gl.createShader(t); gl.shaderSource(o, s); gl.compileShader(o); return o; };
   const pr = gl.createProgram();
   gl.attachShader(pr, sh(gl.VERTEX_SHADER, 'attribute vec2 a;void main(){gl_Position=vec4(a,0.,1.);}'));
@@ -90,18 +95,37 @@ float fbm(vec2 p){float a=.5,s=0.;for(int i=0;i<4;i++){s+=a*n(p);p=p*2.03+7.1;a*
 float stars(vec2 u,float sc,float o){vec2 g=u*sc,id=floor(g),f=fract(g)-.5;float r=h(id+o);if(r<.955)return 0.;vec2 c=(vec2(h(id+o+1.),h(id+o+2.))-.5)*.7;float d=length(f-c);return smoothstep(.1,0.,d)*(.55+.45*sin(T*(.6+r*2.)+r*60.))*(r-.955)/.045;}
 void main(){
   vec2 p=(gl_FragCoord.xy-.5*R)/min(R.x,R.y);p.y-=Y;
-  float r=length(p),a=atan(abs(p.x),p.y),s=S*(1.+B*.018),d=r-s;
-  vec2 q=p*(1.-s*s*.85/(r*r+.001));q.x=abs(q.x);
-  float st=stars(q,46.,0.)+stars(q,92.,9.)*.7;
-  float e=smoothstep(s,s*1.5,r);
-  float fl=fbm(vec2(a*5.,r*2.6-T*.035))*.72+fbm(vec2(a*17.,T*.06))*.28;
-  float g=exp(-max(d,0.)*(9.5-6.*fl))*(.22+1.05*fl*fl);
-  float ring=exp(-abs(d)*230.)*1.25+exp(-abs(d)*46.)*.3;
-  vec3 warm=vec3(1.,.95,.88),cold=vec3(.66,.78,1.);
-  vec3 c=vec3(st*e)+mix(warm,cold,smoothstep(0.,.4,d))*g*(.72+B*.75)+warm*ring*(1.+B*.8);
-  c*=smoothstep(s-.0025,s+.0025,r);
+  float rs=S, r=length(p), a=atan(p.y,p.x);
+  vec3 warm=vec3(1.,.86,.66), hot=vec3(1.,.97,.9);
+  // stars, bent around the hole
+  vec2 q=p*(1.-rs*rs*1.3/(r*r+.0004));
+  float st=(stars(q,46.,0.)+stars(q,92.,9.)*.7)*smoothstep(rs*1.15,rs*2.6,r);
+  // photon ring: one thin, very bright circle
+  float pr=exp(-abs(r-rs*1.02)/(rs*.010));
+  // the far side of the disk, lensed into a halo over the top and under the bottom
+  float lr=(r-rs*1.04)/(rs*.5);
+  float lens=step(0.,lr)*smoothstep(0.,.1,lr)*exp(-lr*2.5);
+  float vert=pow(abs(sin(a)),1.3)*(p.y>0.?1.:.72);
+  float flow=fbm(vec2(a*5.+T*.12,r*10./rs));
+  lens*=(.22+.78*vert)*(.6+.55*flow);
+  // the near side: a thin, wide band crossing in front of the shadow
+  float x=p.x/rs, y=p.y/rs;
+  float th=.026+.075*exp(-x*x*.45);
+  float band=exp(-(y*y)/(th*th));
+  float reach=exp(-pow(abs(x)/4.4,2.4));
+  float streak=fbm(vec2(x*2.6-T*.28*sign(x),y*26.));
+  float beam=1.+.32*clamp(-x*.35,-1.,1.);
+  float disk=band*reach*(.5+.75*streak)*beam;
+  float glow=exp(-max(r-rs,0.)/(rs*.75))*.10;
+  float shadow=smoothstep(rs*.99,rs*1.005,r);
+  vec3 c=vec3(st)*shadow*.9;
+  c+=warm*(lens*2.3+glow)*shadow;
+  c+=hot*pr*1.3*shadow;
+  c+=mix(warm,hot,clamp(band*1.4,0.,1.))*disk*1.7;
+  c=1.-exp(-c*1.25);
   gl_FragColor=vec4(c,1.);
-}`));
+}
+`));
   gl.linkProgram(pr); gl.useProgram(pr);
   gl.bindBuffer(gl.ARRAY_BUFFER, gl.createBuffer());
   gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 3, -1, -1, 3]), gl.STATIC_DRAW);
@@ -112,7 +136,7 @@ void main(){
   const draw = (t) => {
     const W = box.clientWidth;
     gl.uniform2f(U.R, cv.width, cv.height); gl.uniform1f(U.T, t); gl.uniform1f(U.B, 0);
-    gl.uniform1f(U.Y, W < 860 ? .2 : .15); gl.uniform1f(U.S, W < 860 ? .2 : .17);
+    gl.uniform1f(U.Y, W < 860 ? .22 : .13); gl.uniform1f(U.S, W < 860 ? .15 : .15);
     gl.drawArrays(gl.TRIANGLES, 0, 3);
   };
   let on = true;

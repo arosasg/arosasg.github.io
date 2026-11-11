@@ -76,6 +76,11 @@
   if (!('IntersectionObserver' in window)) { els.forEach((e) => e.classList.add('in')); return; }
   const io = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { rootMargin: '0px 0px -4% 0px' });
   els.forEach((e) => io.observe(e));
+  const vio = new IntersectionObserver((es) => es.forEach((e) => {
+    const v = e.target;
+    if (e.isIntersecting) { if (!v.src) v.src = v.dataset.src; v.play().catch(() => {}); } else v.pause();
+  }), { rootMargin: '120px' });
+  document.querySelectorAll('video.lv').forEach((v) => vio.observe(v));
   if (matchMedia('(hover: hover)').matches) addEventListener('pointermove', (ev) => {
     const c = ev.target.closest && ev.target.closest('.cell'); if (!c) return;
     const r = c.getBoundingClientRect(); c.style.setProperty('--mx', `${ev.clientX - r.left}px`); c.style.setProperty('--my', `${ev.clientY - r.top}px`);

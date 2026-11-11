@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Vision · Alejandro Rosas</title>
+<meta name="description" content="Alejandro Rosas&#x27;s vision: humanity exploring the galaxy and answering its biggest questions, and why he builds companies to get there.">
+<link rel="canonical" href="https://alejandrorosas.co/vision/">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" href="/icon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#000000">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Alejandro Rosas">
+<meta property="og:title" content="Vision · Alejandro Rosas">
+<meta property="og:description" content="Alejandro Rosas&#x27;s vision: humanity exploring the galaxy and answering its biggest questions, and why he builds companies to get there.">
+<meta property="og:url" content="https://alejandrorosas.co/vision/">
+<meta property="og:image" content="https://alejandrorosas.co/m/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Vision · Alejandro Rosas">
+<meta name="twitter:description" content="Alejandro Rosas&#x27;s vision: humanity exploring the galaxy and answering its biggest questions, and why he builds companies to get there.">
+<meta name="twitter:image" content="https://alejandrorosas.co/m/og.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400&family=Manrope:wght@300;400;500&family=Michroma&family=Newsreader:ital,opsz,wght@0,6..72,300;1,6..72,300&display=swap">
+<link rel="stylesheet" href="/site.css">
+</head>
+<body class="vision">
+<a class="skip" href="#main">Skip to content</a>
+<header class="top"><div class="bar"><a class="me" href="/">Alejandro Rosas</a><nav aria-label="Pages"><a href="/about/"><span class="n">01</span>About</a><a href="/projects/"><span class="n">02</span>Projects</a><a href="/vision/" aria-current="page"><span class="n">03</span>Vision</a></nav></div></header>
+<div class="sunbox" aria-hidden="true"><canvas id="sun"></canvas></div>
+<main id="main" class="wrap">
+  <div class="head">
+    <p class="kick">03 · Vision</p>
+    <h1>The biggest secrets are still out there.</h1>
+    <p class="lede">We have set foot on one moon. The rest of the galaxy is still waiting. <b>I want to see humanity out there, exploring it, and I want us to answer the biggest questions there are.</b></p>
+  </div>
+  <ul class="qs">
+    <li>What is the universe made of?</li>
+    <li>How did it begin?</li>
+    <li>What is consciousness?</li>
+    <li>Are we alone?</li>
+    <li>How far can we go?</li>
+  </ul>
+  <ol class="believe">
+    <li><span class="n">01</span><div>
+      <h2>Why I build</h2>
+      <p>A future like that does not arrive by itself. It gets built by people who refuse to stop, one company at a time. Every company puts more people, more tools and more intelligence on hard problems. Didit, Santé and everything that comes after them are practice for that.</p>
+    </div></li>
+    <li><span class="n">02</span><div>
+      <h2>Intelligence, pointed at the stars</h2>
+      <p>I build AI every day. I think it will be the biggest lever humanity has ever held, and I want it pointed at the hardest questions we have, out there and in here.</p>
+    </div></li>
+    <li><span class="n">03</span><div>
+      <h2>Beyond my lifespan</h2>
+      <blockquote class="q"><p>There is no greater purpose than shaping a better life, not only for yourself, but for those who will walk this earth long after you're gone.</p><footer>My stories, October 2025</footer></blockquote>
+    </div></li>
+    <li><span class="n">04</span><div>
+      <h2>Tiny, and that's the beauty of it</h2>
+      <blockquote class="q"><p>Humble enough to realize how tiny we are in this universe. And that's the beauty of it, it reminds you not to take life too seriously.</p><footer>Me, new home in SF, April 2026</footer></blockquote>
+    </div></li>
+  </ol>
+  <figure class="moon"><img src="/m/c_moon.webp" width="560" height="560" loading="lazy" decoding="async" alt="The Moon on black, photographed by Alejandro"><figcaption>Shot by me. As far as we have walked.</figcaption></figure>
+  <blockquote class="end"><p>Dreaming higher than ever, not even death can stop a passionate soul in search of the light.</p><footer>My stories, November 2025</footer></blockquote>
+</main>
+<footer class="foot"><div class="wrap">
+  <p class="last">Just getting started.</p>
+  <a class="mail" href="mailto:alejandro.rosas@didit.me">alejandro.rosas@didit.me</a>
+  <div class="fl"><span>© 2026 Alejandro Rosas</span><nav aria-label="Pages"><a href="/about/">About</a><a href="/projects/">Projects</a><a href="/vision/">Vision</a></nav><nav aria-label="Elsewhere"><a href="https://www.instagram.com/_alejandrorosas/" target="_blank" rel="noopener">Instagram ↗</a><a href="https://x.com/_arosasg" target="_blank" rel="noopener">X ↗</a><a href="https://github.com/arosasg" target="_blank" rel="noopener">GitHub ↗</a><a href="https://www.linkedin.com/in/alejandrorosasgarcia/" target="_blank" rel="noopener">LinkedIn ↗</a></nav><span>BCN / SF</span></div>
+</div></footer>
+<script>
+(() => {
+  const cv = document.getElementById('sun'), box = cv.parentElement;
+  const gl = cv.getContext('webgl', { antialias: false, alpha: false });
+  if (!gl) { box.style.background = 'radial-gradient(circle at 50% 46%, #000 0 19%, rgba(255,246,232,.9) 19.4%, rgba(255,255,255,.12) 24%, #000 52%)'; return; }
+  const sh = (t, s) => { const o = gl.createShader(t); gl.shaderSource(o, s); gl.compileShader(o); return o; };
+  const pr = gl.createProgram();
+  gl.attachShader(pr, sh(gl.VERTEX_SHADER, 'attribute vec2 a;void main(){gl_Position=vec4(a,0.,1.);}'));
+  gl.attachShader(pr, sh(gl.FRAGMENT_SHADER, `precision highp float;
+uniform vec2 R;uniform float T,B,Y,S;
+float h(vec2 p){return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453);}
+float n(vec2 p){vec2 i=floor(p),f=fract(p);f=f*f*(3.-2.*f);return mix(mix(h(i),h(i+vec2(1,0)),f.x),mix(h(i+vec2(0,1)),h(i+vec2(1,1)),f.x),f.y);}
+float fbm(vec2 p){float a=.5,s=0.;for(int i=0;i<4;i++){s+=a*n(p);p=p*2.03+7.1;a*=.5;}return s;}
+float stars(vec2 u,float sc,float o){vec2 g=u*sc,id=floor(g),f=fract(g)-.5;float r=h(id+o);if(r<.955)return 0.;vec2 c=(vec2(h(id+o+1.),h(id+o+2.))-.5)*.7;float d=length(f-c);return smoothstep(.1,0.,d)*(.55+.45*sin(T*(.6+r*2.)+r*60.))*(r-.955)/.045;}
+void main(){
+  vec2 p=(gl_FragCoord.xy-.5*R)/min(R.x,R.y);p.y-=Y;
+  float r=length(p),a=atan(abs(p.x),p.y),s=S*(1.+B*.018),d=r-s;
+  vec2 q=p*(1.-s*s*.85/(r*r+.001));q.x=abs(q.x);
+  float st=stars(q,46.,0.)+stars(q,92.,9.)*.7;
+  float e=smoothstep(s,s*1.5,r);
+  float fl=fbm(vec2(a*5.,r*2.6-T*.035))*.72+fbm(vec2(a*17.,T*.06))*.28;
+  float g=exp(-max(d,0.)*(9.5-6.*fl))*(.22+1.05*fl*fl);
+  float ring=exp(-abs(d)*230.)*1.25+exp(-abs(d)*46.)*.3;
+  vec3 warm=vec3(1.,.95,.88),cold=vec3(.66,.78,1.);
+  vec3 c=vec3(st*e)+mix(warm,cold,smoothstep(0.,.4,d))*g*(.72+B*.75)+warm*ring*(1.+B*.8);
+  c*=smoothstep(s-.0025,s+.0025,r);
+  gl_FragColor=vec4(c,1.);
+}`));
+  gl.linkProgram(pr); gl.useProgram(pr);
+  gl.bindBuffer(gl.ARRAY_BUFFER, gl.createBuffer());
+  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 3, -1, -1, 3]), gl.STATIC_DRAW);
+  const loc = gl.getAttribLocation(pr, 'a'); gl.enableVertexAttribArray(loc); gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
+  const U = Object.fromEntries(['R', 'T', 'B', 'Y', 'S'].map((k) => [k, gl.getUniformLocation(pr, k)]));
+  const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const size = () => { const d = Math.min(1.5, devicePixelRatio || 1); cv.width = Math.round(box.clientWidth * d); cv.height = Math.round(box.clientHeight * d); gl.viewport(0, 0, cv.width, cv.height); };
+  const draw = (t) => {
+    const W = box.clientWidth, H = box.clientHeight;
+    gl.uniform2f(U.R, cv.width, cv.height); gl.uniform1f(U.T, t); gl.uniform1f(U.B, 0);
+    gl.uniform1f(U.Y, .05); gl.uniform1f(U.S, W < 640 ? .24 : .2);
+    gl.drawArrays(gl.TRIANGLES, 0, 3);
+  };
+  let on = true;
+  new IntersectionObserver((es) => { on = es[0].isIntersecting; if (on && !still) requestAnimationFrame(loop); }).observe(box);
+  const loop = (now) => { draw(now / 1000); if (on && !still) requestAnimationFrame(loop); };
+  size(); draw(12);
+  addEventListener('resize', () => { size(); draw(12); });
+  if (!still) requestAnimationFrame(loop);
+})();
+</script>
+</body>
+</html>

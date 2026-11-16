@@ -22,9 +22,11 @@
 <meta name="twitter:title" content="Projects · Alejandro Rosas">
 <meta name="twitter:description" content="The companies Alejandro Rosas co-founded with his twin: Didit (identity infrastructure, YC W26), Santé (longevity clinics) and Gamium, plus press.">
 <meta name="twitter:image" content="https://alejandrorosas.co/m/og.jpg">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400&family=Manrope:wght@300;400;500&family=Michroma&family=Newsreader:ital,opsz,wght@0,6..72,300;1,6..72,300&display=swap">
+<link rel="preload" href="/fonts/manrope-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/michroma-400-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/ibm-plex-mono-400-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" as="image" fetchpriority="high" href="/m/pj_dither.png">
+<link rel="stylesheet" href="/fonts.css">
 <link rel="stylesheet" href="/site.css">
 <script>document.documentElement.classList.add('js')</script>
 </head>
@@ -33,28 +35,28 @@
 <header class="top"><div class="bar"><a class="me" href="/">Alejandro Rosas</a><nav class="tabs" aria-label="Pages"><a href="/about/"><span class="n">01</span>About</a><a href="/projects/" aria-current="page"><span class="n">02</span>Projects</a><a href="/vision/"><span class="n">03</span>Vision</a></nav></div></header>
 <main id="main" class="frame">
   <section class="g phead">
-    <div class="cell pad txt rv">
+    <div class="cell pad txt">
       <div><p class="kick">02 · Projects</p><h1>Things I build.</h1></div>
       <p class="lede">Three companies, all with my twin. Two are alive, one failed, and the one that failed taught me the most.</p>
     </div>
-    <figure class="cell ph dither rv" style="--d:.08s"><img src="/m/pj_dither.png" width="1260" height="840" fetchpriority="high" decoding="async" style="object-position:50% 40%" alt="Alejandro on stage with a microphone, drawn in white dots"><figcaption class="tag">On stage, San Francisco</figcaption></figure>
+    <figure class="cell ph dither"><img src="/m/pj_dither.png" width="1260" height="840" fetchpriority="high" style="object-position:50% 40%" alt="Alejandro on stage with a microphone, drawn in white dots"><figcaption class="tag">On stage, San Francisco</figcaption></figure>
   </section>
   <div class="band"><span>01 / Active</span><b>Now</b><span>2023 → ∞</span></div>
   <section class="g"><article class="cell pj rv">
-    <div class="pl"><img class="logo" src="/logos/didit.svg" width="491" height="170" alt="Didit"><p class="meta">Co-founder &amp; CTO<br>2023 → now · YC W26<br>Identity infrastructure</p><div class="links"><a href="https://didit.me" target="_blank" rel="noopener">didit.me ↗</a><a href="https://www.ycombinator.com/companies/didit" target="_blank" rel="noopener">Y Combinator ↗</a></div></div>
+    <div class="pl"><img class="logo" src="/logos/didit.svg" width="491" height="170" loading="lazy" fetchpriority="low" decoding="async" alt="Didit"><p class="meta">Co-founder &amp; CTO<br>2023 → now · YC W26<br>Identity infrastructure</p><div class="links"><a href="https://didit.me" target="_blank" rel="noopener">didit.me ↗</a><a href="https://www.ycombinator.com/companies/didit" target="_blank" rel="noopener">Y Combinator ↗</a></div></div>
     <div class="pt"><p>Proving who you are online is a human right. Didit is infrastructure for identity and fraud: one API for identity verification, AML screening and fraud prevention, used by more than 3,500 companies. <b>I lead the engineering, and every AI model in it is built in-house.</b></p><ul class="stats"><li><span class="v">3,500+</span><span class="l">Companies</span></li><li><span class="v">$7.5M</span><span class="l">Raised</span></li><li><span class="v">W26</span><span class="l">Y Combinator</span></li><li><span class="v">Profitable</span><span class="l">With about 20 people</span></li></ul><ul class="rows"><li><span class="w">May 2023</span><span class="d"><b>Launch.</b> After 8 years reading Xataka every day, it was our turn to be on it.</span></li><li><span class="w">Jan 2024</span><span class="d"><b>Spain's financial sandbox.</b> The Treasury later attested it as safer than verifying in person.</span></li><li><span class="w">Nov 2025</span><span class="d"><b>Y Combinator.</b> We grew up watching their lectures online. Then we got in.</span></li></ul></div>
-    <div class="pp"><figure class="ph"><img src="/m/c_yc.webp" width="1000" height="1333" loading="lazy" decoding="async" style="object-position:50% 60%" alt="Alejandro and Alberto standing behind the Y Combinator sign"><figcaption class="tag">Y Combinator, with Alberto</figcaption></figure></div>
+    <div class="pp"><figure class="ph"><picture><source type="image/avif" srcset="/m/c_yc-640.avif 640w, /m/c_yc-1000.avif 1000w" sizes="(max-width: 1180px) 100vw, 30vw"><source type="image/webp" srcset="/m/c_yc-640.webp 640w, /m/c_yc-1000.webp 1000w" sizes="(max-width: 1180px) 100vw, 30vw"><img src="/m/c_yc-640.webp" width="1000" height="1333" loading="lazy" fetchpriority="low" decoding="async" style="object-position:50% 60%" alt="Alejandro and Alberto standing behind the Y Combinator sign"></picture><figcaption class="tag">Y Combinator, with Alberto</figcaption></figure></div>
   </article></section>
   <section class="g"><article class="cell pj rv">
-    <div class="pl"><img class="logo" src="/logos/sante.png" width="778" height="206" alt="Santé"><p class="meta">Co-founder<br>2023 → now · Spain<br>Longevity and aesthetic medicine</p><div class="links"><a href="https://santeclinics.com" target="_blank" rel="noopener">santeclinics.com ↗</a></div></div>
+    <div class="pl"><picture><source type="image/webp" srcset="/logos/sante-256.webp"><img class="logo" src="/logos/sante.png" width="778" height="206" loading="lazy" fetchpriority="low" decoding="async" alt="Santé"></picture><p class="meta">Co-founder<br>2023 → now · Spain<br>Longevity and aesthetic medicine</p><div class="links"><a href="https://santeclinics.com" target="_blank" rel="noopener">santeclinics.com ↗</a></div></div>
     <div class="pt"><p>Proof that building isn't only software. One clinic on Diagonal, in Barcelona. Then Madrid. Then our own lab. Longevity and aesthetic medicine, built with the same obsession as everything else.</p><ul class="stats"><li><span class="v">10,000+</span><span class="l">Patients</span></li><li><span class="v">4.9</span><span class="l">Stars, across 700+ reviews</span></li><li><span class="v">$5M+</span><span class="l">Revenue</span></li></ul></div>
-    <div class="pp"><figure class="ph"><img src="/m/s_three.webp" width="1400" height="1344" loading="lazy" decoding="async" style="object-position:50% 55%" alt="Three men in black sitting on IV drips in a white Santé clinic room"><figcaption class="tag">In the chair, like every patient</figcaption></figure></div>
+    <div class="pp"><figure class="ph"><picture><source type="image/avif" srcset="/m/s_three-640.avif 640w, /m/s_three-1024.avif 1024w" sizes="(max-width: 1180px) 100vw, 30vw"><source type="image/webp" srcset="/m/s_three-640.webp 640w, /m/s_three-1024.webp 1024w" sizes="(max-width: 1180px) 100vw, 30vw"><img src="/m/s_three-640.webp" width="1400" height="1344" loading="lazy" fetchpriority="low" decoding="async" style="object-position:50% 55%" alt="Three men in black sitting on IV drips in a white Santé clinic room"></picture><figcaption class="tag">In the chair, like every patient</figcaption></figure></div>
   </article></section>
   <div class="band"><span>02 / Archive</span><b>Before</b><span>Learnings</span></div>
   <section class="g"><article class="cell pj rv">
-    <div class="pl"><img class="logo" src="/logos/gamium.png" width="652" height="87" alt="Gamium"><p class="meta">Co-founder<br>2021 → 2023<br>The one that failed</p><div class="links"></div></div>
+    <div class="pl"><picture><source type="image/webp" srcset="/logos/gamium-320.webp"><img class="logo" src="/logos/gamium.png" width="652" height="87" loading="lazy" fetchpriority="low" decoding="async" alt="Gamium"></picture><p class="meta">Co-founder<br>2021 → 2023<br>The one that failed</p><div class="links"></div></div>
     <div class="pt"><p>It started with GPU farms mining Ethereum. Then the biggest idea we could find: a metaverse where your avatar was your identity and your data belonged to you. We were 24, with press, investors and 33 people, and no product-market fit. <b>It failed. Best education I ever paid for.</b></p><ul class="stats"><li><span class="v"><span class="c">~€</span>3M</span><span class="l">Raised</span></li><li><span class="v"><span class="c">€</span>1M</span><span class="l">Of virtual land sold in 10 days</span></li><li><span class="v">33</span><span class="l">People at the peak</span></li></ul></div>
-    <div class="pp"><figure class="ph"><img src="/m/c_tef.webp" width="770" height="570" loading="lazy" decoding="async" style="object-position:50% 40%" alt="Alejandro and Alberto at Telefónica with a member of the Wayra team"><figcaption class="tag">Wayra, Telefónica, 2022</figcaption></figure></div>
+    <div class="pp"><figure class="ph"><picture><source type="image/avif" srcset="/m/c_tef-640.avif"><source type="image/webp" srcset="/m/c_tef-640.webp"><img src="/m/c_tef-640.webp" width="770" height="570" loading="lazy" fetchpriority="low" decoding="async" style="object-position:50% 40%" alt="Alejandro and Alberto at Telefónica with a member of the Wayra team"></picture><figcaption class="tag">Wayra, Telefónica, 2022</figcaption></figure></div>
   </article></section>
   <section class="g c2">
     <div class="cell pad rv"><p class="kick">Before the companies</p>
@@ -75,10 +77,15 @@
   const els = document.querySelectorAll('.rv');
   if (!('IntersectionObserver' in window)) { els.forEach((e) => e.classList.add('in')); return; }
   const io = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { rootMargin: '0px 0px -4% 0px' });
-  els.forEach((e) => io.observe(e));
+  els.forEach((e) => {
+    const r = e.getBoundingClientRect();
+    if (r.top < innerHeight && r.bottom > 0) e.classList.add('in');
+    else io.observe(e);
+  });
+  const av1 = document.createElement('video').canPlayType('video/mp4; codecs="av01.0.05M.08"');
   const vio = new IntersectionObserver((es) => es.forEach((e) => {
     const v = e.target;
-    if (e.isIntersecting) { if (!v.src) v.src = v.dataset.src; v.play().catch(() => {}); } else v.pause();
+    if (e.isIntersecting) { if (!v.src) { if (v.dataset.poster) v.poster = v.dataset.poster; v.src = (av1 && v.dataset.av1) || v.dataset.src; } v.play().catch(() => {}); } else v.pause();
   }), { rootMargin: '120px' });
   document.querySelectorAll('video.lv').forEach((v) => vio.observe(v));
   if (matchMedia('(hover: hover)').matches) addEventListener('pointermove', (ev) => {

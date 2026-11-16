@@ -22,9 +22,10 @@
 <meta name="twitter:title" content="Vision · Alejandro Rosas">
 <meta name="twitter:description" content="Alejandro Rosas&#x27;s vision: humanity exploring the galaxy and answering its biggest questions, and why he builds companies to get there.">
 <meta name="twitter:image" content="https://alejandrorosas.co/m/og.jpg">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400&family=Manrope:wght@300;400;500&family=Michroma&family=Newsreader:ital,opsz,wght@0,6..72,300;1,6..72,300&display=swap">
+<link rel="preload" href="/fonts/manrope-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/michroma-400-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/ibm-plex-mono-400-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/fonts.css">
 <link rel="stylesheet" href="/site.css">
 <script>document.documentElement.classList.add('js')</script>
 </head>
@@ -53,7 +54,7 @@
     </div>
   </section>
   <section class="g vend">
-    <figure class="cell pad moonc rv"><img src="/m/c_moon.webp" width="560" height="560" loading="lazy" alt="The Moon on black, photographed by Alejandro"><figcaption>Shot by me. As far as we have walked.</figcaption></figure>
+    <figure class="cell pad moonc rv"><img src="/m/c_moon-384.webp" width="384" height="384" loading="lazy" fetchpriority="low" decoding="async" alt="The Moon on black, photographed by Alejandro"><figcaption>Shot by me. As far as we have walked.</figcaption></figure>
     <blockquote class="cell pad end rv" style="--d:.06s"><p>Dreaming higher than ever, not even death can stop a passionate soul in search of the light.</p><footer>My stories, November 2025</footer></blockquote>
   </section>
 </main>
@@ -67,10 +68,15 @@
   const els = document.querySelectorAll('.rv');
   if (!('IntersectionObserver' in window)) { els.forEach((e) => e.classList.add('in')); return; }
   const io = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { rootMargin: '0px 0px -4% 0px' });
-  els.forEach((e) => io.observe(e));
+  els.forEach((e) => {
+    const r = e.getBoundingClientRect();
+    if (r.top < innerHeight && r.bottom > 0) e.classList.add('in');
+    else io.observe(e);
+  });
+  const av1 = document.createElement('video').canPlayType('video/mp4; codecs="av01.0.05M.08"');
   const vio = new IntersectionObserver((es) => es.forEach((e) => {
     const v = e.target;
-    if (e.isIntersecting) { if (!v.src) v.src = v.dataset.src; v.play().catch(() => {}); } else v.pause();
+    if (e.isIntersecting) { if (!v.src) { if (v.dataset.poster) v.poster = v.dataset.poster; v.src = (av1 && v.dataset.av1) || v.dataset.src; } v.play().catch(() => {}); } else v.pause();
   }), { rootMargin: '120px' });
   document.querySelectorAll('video.lv').forEach((v) => vio.observe(v));
   if (matchMedia('(hover: hover)').matches) addEventListener('pointermove', (ev) => {
@@ -132,7 +138,7 @@ void main(){
   const loc = gl.getAttribLocation(pr, 'a'); gl.enableVertexAttribArray(loc); gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
   const U = Object.fromEntries(['R', 'T', 'B', 'Y', 'S'].map((k) => [k, gl.getUniformLocation(pr, k)]));
   const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const size = () => { const d = Math.min(1.5, devicePixelRatio || 1); cv.width = Math.round(box.clientWidth * d); cv.height = Math.round(box.clientHeight * d); gl.viewport(0, 0, cv.width, cv.height); };
+  const size = () => { const d = Math.min(1.25, devicePixelRatio || 1); cv.width = Math.round(box.clientWidth * d); cv.height = Math.round(box.clientHeight * d); gl.viewport(0, 0, cv.width, cv.height); };
   const draw = (t) => {
     const W = box.clientWidth;
     gl.uniform2f(U.R, cv.width, cv.height); gl.uniform1f(U.T, t); gl.uniform1f(U.B, 0);
@@ -141,7 +147,8 @@ void main(){
   };
   let on = true;
   new IntersectionObserver((es) => { on = es[0].isIntersecting; if (on && !still) requestAnimationFrame(loop); }).observe(box);
-  const loop = (now) => { draw(now / 1000); if (on && !still) requestAnimationFrame(loop); };
+  let tick = 0;
+  const loop = (now) => { if (!(tick++ & 1)) draw(now / 1000); if (on && !still) requestAnimationFrame(loop); };
   size(); draw(12);
   addEventListener('resize', () => { size(); draw(12); });
   if (!still) requestAnimationFrame(loop);

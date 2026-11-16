@@ -49,10 +49,15 @@
   const els = document.querySelectorAll('.rv');
   if (!('IntersectionObserver' in window)) { els.forEach((e) => e.classList.add('in')); return; }
   const io = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { rootMargin: '0px 0px -4% 0px' });
-  els.forEach((e) => io.observe(e));
+  els.forEach((e) => {
+    const r = e.getBoundingClientRect();
+    if (r.top < innerHeight && r.bottom > 0) e.classList.add('in');
+    else io.observe(e);
+  });
+  const av1 = document.createElement('video').canPlayType('video/mp4; codecs="av01.0.05M.08"');
   const vio = new IntersectionObserver((es) => es.forEach((e) => {
     const v = e.target;
-    if (e.isIntersecting) { if (!v.src) v.src = v.dataset.src; v.play().catch(() => {}); } else v.pause();
+    if (e.isIntersecting) { if (!v.src) { if (v.dataset.poster) v.poster = v.dataset.poster; v.src = (av1 && v.dataset.av1) || v.dataset.src; } v.play().catch(() => {}); } else v.pause();
   }), { rootMargin: '120px' });
   document.querySelectorAll('video.lv').forEach((v) => vio.observe(v));
   if (matchMedia('(hover: hover)').matches) addEventListener('pointermove', (ev) => {
